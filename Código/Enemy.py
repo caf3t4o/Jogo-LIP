@@ -58,13 +58,15 @@ class Enemy(pygame.sprite.Sprite):
                 
     def animate(self):
 
-        left_animations = [self.game.enemy_spritesheet.get_sprite(3, 98, self.width, self.height),
-                           self.game.enemy_spritesheet.get_sprite(35, 98, self.width, self.height),
-                           self.game.enemy_spritesheet.get_sprite(68, 98, self.width, self.height)]
+        right_animations = [self.game.enemy_spritesheet.get_sprite(0, 32, self.width, self.height),
+                           self.game.enemy_spritesheet.get_sprite(32, 32, self.width, self.height),
+                           self.game.enemy_spritesheet.get_sprite(64, 32, self.width, self.height),
+                           self.game.enemy_spritesheet.get_sprite(96, 32, self.width, self.height)]
 
-        right_animations = [self.game.enemy_spritesheet.get_sprite(3, 66, self.width, self.height),
-                            self.game.enemy_spritesheet.get_sprite(35, 66, self.width, self.height),
-                            self.game.enemy_spritesheet.get_sprite(68, 66, self.width, self.height)]
+        left_animations = [self.game.enemy_spritesheet.get_sprite(0, 96, self.width, self.height),
+                            self.game.enemy_spritesheet.get_sprite(32, 96, self.width, self.height),
+                            self.game.enemy_spritesheet.get_sprite(64, 96, self.width, self.height),
+                            self.game.enemy_spritesheet.get_sprite(96, 96, self.width, self.height)]
         
         if self.facing == "left":
             if self.x_change == 0 :

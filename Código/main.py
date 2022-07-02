@@ -12,9 +12,10 @@ class Game:
     
         self.running = True #Rodando?
         
-        self.character_spritesheet = Spritesheet('img/character.png')
+        self.character_spritesheet = Spritesheet('img/prota.png')
+        self.wall_spritesheet = Spritesheet('img/terrain.png')
         self.terrain_spritesheet = Spritesheet('img/terrain.png')
-        self.enemy_spritesheet = Spritesheet ('img/enemy.png')
+        self.enemy_spritesheet = Spritesheet ('img/BAT.png')
     
     def createTilemap(self):
         for i, row in enumerate(tilemap): #enumerar a posição e o conteudo
@@ -55,7 +56,7 @@ class Game:
         
     # Mostrar as sprites
     def draw (self):
-        self.screen.fill(BLACK) #tela preta
+        self.screen.fill(BLUE) #tela preta
         self.all_sprites.draw(self.screen) # olha todas as sprites, acha a imagem e desenha no retangulo
         self.clock.tick(FPS)
         pygame.display.update()
