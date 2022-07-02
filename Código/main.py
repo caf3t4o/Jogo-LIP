@@ -1,7 +1,7 @@
 import pygame
 from sprites import *
 from config import *
-
+from home import *
 import sys
  
 class Game:
@@ -15,7 +15,9 @@ class Game:
         self.character_spritesheet = Spritesheet('img/prota.png')
         self.wall_spritesheet = Spritesheet('img/terrain.png')
         self.terrain_spritesheet = Spritesheet('img/terrain.png')
+        self.house_spritesheet = Spritesheet('img/house.png')
         self.enemy_spritesheet = Spritesheet ('img/BAT.png')
+        
     
     def createTilemap(self):
         for i, row in enumerate(tilemap): #enumerar a posição e o conteudo
@@ -27,6 +29,8 @@ class Game:
                     Enemy(self,j,i)
                 if column == "P":
                     Player(self,j,i)
+                if column == "H":
+                    Home(self,j,i)
         
     def new(self):
         #jogo começa
@@ -34,6 +38,7 @@ class Game:
         
         self.all_sprites = pygame.sprite.LayeredUpdates()
         self.blocks = pygame.sprite.LayeredUpdates()
+        self.houses = pygame.sprite.LayeredUpdates()
         self.enemies = pygame.sprite.LayeredUpdates()
         self.attacks = pygame.sprite.LayeredUpdates()
         

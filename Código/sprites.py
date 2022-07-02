@@ -52,8 +52,10 @@ class Player (pygame.sprite.Sprite):
         
         self.rect.x += self.x_change
         self.collide_blocks('x')
+        self.collide_houses('x')
         self.rect.y += self.y_change
         self.collide_blocks('y')
+        self.collide_houses('y')
         
         self.x_change = 0
         self.y_change = 0
@@ -92,7 +94,6 @@ class Player (pygame.sprite.Sprite):
     def collide_enemy(self):
           hits = pygame.sprite.spritecollide(self,self.game.enemies,False)
           if hits:
-              self.kill()
               self.game.playing = False
           
     def collide_blocks(self,direction):
@@ -120,6 +121,34 @@ class Player (pygame.sprite.Sprite):
                     self.rect.y = hits[0].rect.bottom
                     for sprite in self.game.all_sprites:
                         sprite.rect.y -= PLAYER_SPEED
+                                           
+    def collide_houses(self,direction):
+        if direction == "x":
+            hits = pygame.sprite.  spritecollide(self,self.game.houses,False)
+            if hits:
+                if self.x_change>0:
+                    self.rect.x = hits[0].rect.left - self.rect.width
+                    for sprite in self.game.all_sprites:
+                        sprite.rect.x += PLAYER_SPEED
+                    
+                if self.x_change<0:
+                    self.rect.x = hits[0].rect.right 
+                    for sprite in self.game.all_sprites:
+                        sprite.rect.x -= PLAYER_SPEED
+                    
+        if direction == "y":
+            hits = pygame.sprite.  spritecollide(self,self.game.houses,False)
+            if hits:
+                if self.y_change>0:
+                    self.rect.y = hits[0].rect.top   - self.rect.height
+                    for sprite in self.game.all_sprites:
+                        sprite.rect.y += PLAYER_SPEED
+                if self.y_change<0:
+                    self.rect.y = hits[0].rect.bottom
+                    for sprite in self.game.all_sprites:
+                        sprite.rect.y -= PLAYER_SPEED
+                     
+                        
     def animate(self):
         
         down_animations = [self.game.character_spritesheet.get_sprite(1, 3, self.width, self.height),
